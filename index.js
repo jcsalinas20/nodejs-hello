@@ -38,10 +38,12 @@ app.get("/", (req, res) => {
 })
 
 app.post("/hola", (req, res) => {
-    res.header("Content-Type", "application/json");
-    res.send(JSON.stringify({
-        msg: "Hola " + req.body.name
-    }, null, 2));
+    res.writeHead(200, {
+        'Content-Type': 'application/json',
+        'X-Powered-By': 'bacon'
+    });
+    res.write("Hola " + req.body.name);
+    res.end();
 })
 
 app.listen("1337", async () => {
